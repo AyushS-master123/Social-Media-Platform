@@ -12,10 +12,6 @@ class User{
         this.password=password;
         this.posts=new ArrayList<>();
     }
-    public void registerUser(String username, String password){
-        pass
-        
-    }
 
     public void run(){
         boolean exit=false;
@@ -39,6 +35,59 @@ class User{
                     String password=sc.nextLine();
                     registerUser(username,password);
                     break;
+                case 2:
+                    System.out.println("Enter a username");
+                    String username=sc.nextLine();
+                    System.out.println("Enter a password");
+                    String password=sc.nextLine();
+                    login(username,password);
+                    break;
+                case 3:
+                    if(currentuser!=null){
+                        System.out.println("Enter your text post");
+                        String textcontent=sc.nextLine();
+                        System.out.println("Enter hashtags(comma seperated)");
+                        String hashtags=sc.nextLine();
+                        List<String>hashtagsList=new ArrayList<>();
+                        String[] hashtagsArray=hashtags.split(",");
+                        for(String hashtag: hashtagsArray){
+                            hashtagsList.add(hashtag.trim());
+                        }
+                        createTextPost(textcontent,hashtagsList);
+                        
+
+                    }
+                    else{
+                        System.out.println("Please log in to create a post");
+                    }
+                    break;
+                case 4:
+                    if(currentuser!=null){
+                        System.out.println("Enter your image post title");
+                        String imagePostTitle=sc.nextLine();
+                        System.out.println("Enter your image url");
+                        String imageUrl=sc.nextLine();
+                        System.out.println("Enter your image post description");
+                        String imageDescription=sc.nextLine();
+                        createimagepost(imagePostTitle,imageUrl,imageDescription);
+
+                    }
+                    else{
+                        System.out.println("Please log out to create a post");
+
+                    }
+                    break;
+                case 5:
+                    viewPosts();
+                    break;
+                case 6:
+                    exit=true;
+                    System.out.println("Exiting social media platform");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try aagain!");
+                    break;
+
             }
         }
     }
