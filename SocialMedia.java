@@ -1,7 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.Map;
+import java.util.HashMap;
 class User{
     private String username;
     private String password;
@@ -12,7 +13,31 @@ class User{
         this.password=password;
         this.posts=new ArrayList<>();
     }
+}
+public class SocialMedia{
+    private Scanner sc;
+    //This is a database that will store the details of the users.
+    private Map <String,User>users;
+    //This is a object of the class user so that we can access the user to register, login, and creating a new post.
+    private User currentUser;
+    //Social media is a constructor used to initialze everything.
+    public SocialMedia(){
+        //We initalized the empty users database.
+        this.users=new HashMap<>();
+        this.sc=new Scanner(System.in);
+    }
 
+
+    public void RegisterUser(String username,String password){
+        //It is checking is the users database does not contain a particular username then we will register the user.
+        if(!users.containsKey(username)){
+            users.put(username,new User(username,password));
+            System.out.println("Registration is successful.");
+        }
+        else{
+            System.out.println("Username already exists. Please choose a diffrent username.");
+        }
+    }
     public void run(){
         boolean exit=false;
         while(exit==false){
@@ -23,7 +48,6 @@ class User{
             System.out.println("4: Create image post");
             System.out.println("5: View post");
             System.out.println("6: Exit");
-            Scanner sc=new Scanner(System.in);
             int choice=sc.nextInt();
             sc.nextLine();
 
