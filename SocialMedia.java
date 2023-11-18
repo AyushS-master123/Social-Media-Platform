@@ -13,6 +13,11 @@ class User{
         this.password=password;
         this.posts=new ArrayList<>();
     }
+    public boolean authenticate(String password){
+        //We are matching the actual password with the password we provided. If it matches we 
+        //return true otherwise we return false.
+        return this.password.equals(password);
+    }
 }
 public class SocialMedia{
     private Scanner sc;
@@ -36,6 +41,25 @@ public class SocialMedia{
         }
         else{
             System.out.println("Username already exists. Please choose a diffrent username.");
+        }
+    }
+    public void login(String username,String password){
+        //It is checking if the username is present in the database or not
+        if(users.containsKey(username)){
+            //get function use key to get the value in front of the key in the database.
+            User user=users.get(username);
+            //Here we are tring to match our password with our stored password in the database. If it matches we
+            //will login otherwise not.
+            if(user.authenticate(password)){
+                currentUser=user;
+                System.out.println("Login successful");
+            }
+            else{
+                System.out.println("Login not successful due to incorrect password");
+            }
+        }
+        else{
+            System.out.println("Username does not exist. Please register");
         }
     }
     public void run(){

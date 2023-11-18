@@ -1,0 +1,13 @@
+this.password.equals(password);
+equal function is a string function used to match 2 strings with each other.
+
+!users.containsKey(username)
+contains key is a hashmap function to check if a particular key is present or not. We mostly use hashmap as a database
+in our project.
+
+users.put(username,new User(username,password));
+put function is a hashmao function to add a new key value pair in a hashmap. In this example username is the key\
+and all the details about the user is the value. Key is a unique attribute to find every value in a hashmap.
+
+User user=users.get(username);
+get function is a hashmap function which is used to get value related to a particular key.
