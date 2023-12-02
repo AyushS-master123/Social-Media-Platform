@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Map;
 import java.util.HashMap;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 class User{
     private String username;
     private String password;
@@ -18,6 +20,42 @@ class User{
         //return true otherwise we return false.
         return this.password.equals(password);
     }
+}
+
+class Post{
+    private String content;
+    private String date;
+    private int likes;
+    private List<String>comments;
+
+    public Post(String content){
+        this.content=content;
+        this.date=getCurrentDate();
+        this.likes=0;
+        this.comments=new ArrayList<>();
+    }
+    public String getContent(){
+        return content;
+    }
+    public int getLikes(){
+        return likes;
+    }
+    public List<String> getComments(){
+        return comments;
+    }
+    public void like(){
+        likes++;
+    }
+    public void addComment(String comment){
+        comments.add(comment);
+    }
+    public String getCurrentDate(){
+        LocalDate currentDate=LocalDate.now();//This is giving us the current date by using the now function according to the current location.
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-mm-dd");//We are making a formatter here of yyyy-mm-dd.
+        return currentDate.format(formatter);//We are changing the date into "that" format/
+
+    }
+
 }
 public class SocialMedia{
     private Scanner sc;
